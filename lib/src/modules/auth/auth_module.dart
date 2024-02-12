@@ -1,10 +1,10 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:food_delivery/src/modules/auth/ui/pages/login_page.dart';
+import 'package:food_delivery/src/modules/auth/ui/pages/welcome_page.dart';
 
 class AuthModule extends Module {
     @override
   void routes(r) {
-    r.child('/', child: (context) => const LoginPage());
+    r.child('/', child: (context) => const WelcomePage());
   }
   
 }
