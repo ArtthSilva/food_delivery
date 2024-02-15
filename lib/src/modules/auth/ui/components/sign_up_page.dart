@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/src/modules/auth/controller/auth_controller.dart';
 
-class SignUpPage extends StatefulWidget {
-    SignUpPage({super.key});
+class SignUpComponent extends StatefulWidget {
+    const SignUpComponent({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<SignUpComponent> createState() => _SignUpComponentState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _SignUpComponentState extends State<SignUpComponent> {
   final userNameController = TextEditingController();
 
   final emailController = TextEditingController();
@@ -17,7 +17,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   final confirmPasswordController = TextEditingController();
 
-  AuthController _controller = AuthController();
+  final _controller = AuthController();
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,7 @@ class _SignUpPageState extends State<SignUpPage> {
               style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromRGBO(250, 74, 12, 100)),
               onPressed: () {
-                _controller.createUser(
+                _controller.registerUser(
                 userNameController.text, emailController.text, passwordController.text);
               },
               child: const Text(
