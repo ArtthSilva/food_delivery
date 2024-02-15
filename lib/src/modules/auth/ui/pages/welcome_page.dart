@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/src/modules/auth/ui/pages/login_page.dart';
+import 'package:food_delivery/src/modules/auth/ui/pages/sign_up_page.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -74,9 +75,9 @@ class _WelcomePageState extends State<WelcomePage> with TickerProviderStateMixin
                       Expanded(
                           child: TabBarView(
                         controller: tabController,
-                        children: [
+                        children:   [
                           LoginPage(),
-                          Text('2'),
+                          SignUpPage(),
                         ],
                       ))
                     ],

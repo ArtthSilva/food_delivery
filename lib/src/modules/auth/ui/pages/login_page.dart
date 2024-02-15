@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/src/modules/auth/controller/auth_controller.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final emailController = TextEditingController();
+
+  final passwordController = TextEditingController();
+
+  AuthController controller = AuthController();
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +30,9 @@ class LoginPage extends StatelessWidget {
               )
             ],
           ),
-          const TextField(),
+          TextField(
+            controller: emailController,
+          ),
           const SizedBox(
             height: 40,
           ),
@@ -30,7 +44,9 @@ class LoginPage extends StatelessWidget {
               )
             ],
           ),
-          const TextField(),
+          TextField(
+            controller: emailController,
+          ),
           const SizedBox(
             height: 20,
           ),
@@ -50,7 +66,9 @@ class LoginPage extends StatelessWidget {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromRGBO(250, 74, 12, 100)),
-              onPressed: () {},
+              onPressed: () {
+                controller.loginUser(emailController.text, passwordController.text);
+              },
               child: const Text(
                 'Login',
                 style: TextStyle(color: Colors.white),
