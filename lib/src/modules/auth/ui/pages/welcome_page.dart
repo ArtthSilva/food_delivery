@@ -75,7 +75,7 @@ class _WelcomePageState extends State<WelcomePage> with TickerProviderStateMixin
                       Expanded(
                           child: TabBarView(
                         controller: tabController,
-                        children:   [
+                        children:   const [
                           LoginPage(),
                           SignUpComponent(),
                         ],
