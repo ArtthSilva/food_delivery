@@ -16,6 +16,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   @override
   Widget build(BuildContext context) {
     return ZoomDrawer(
+      angle: -0,
+      slideWidth: MediaQuery.of(context).size.width*.60,
         menuScreen: Builder(builder: (context) {
           return MenuScreen(
             onPageChange: (a) {
@@ -28,8 +30,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
         }),
         mainScreen: page,
         borderRadius: 24,
-        showShadow: true,
-        drawerShadowsBackgroundColor: Colors.blueGrey,
+         drawerShadowsBackgroundColor: Colors.deepOrange,
         menuBackgroundColor: Colors.deepOrange);
   }
 }
@@ -45,30 +46,32 @@ class MenuScreen extends StatefulWidget {
 class _MenuScreenState extends State<MenuScreen> {
   List<ItemModel> listItems = [
     ItemModel(
-        icon: const Icon(Icons.person_pin),
-        title: const Text('Profile'),
+        icon: const Icon(Icons.person_pin_outlined,color: Colors.white,),
+        title: const Text('Profile',style: TextStyle(color: Colors.white),),
         page: const HomePage()),
     ItemModel(
-        icon: const Icon(Icons.add_shopping_cart_outlined),
-        title: const Text('Orders'),
+        icon: const Icon(Icons.add_shopping_cart_outlined,color: Colors.white,),
+        title: const Text('Orders',style: TextStyle(color: Colors.white),),
         page: const ProfilePage())
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.deepOrange,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: listItems
-            .map((e) => ListTile(
-                  onTap: () {
-                    widget.onPageChange(e.page);
-                  },
-                  title: e.title,
-                  leading: e.icon,
-                ))
-            .toList(),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.deepOrange,
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: listItems
+              .map((e) => ListTile(
+                    onTap: () {
+                      widget.onPageChange(e.page);
+                    },
+                    title: e.title,
+                    leading: e.icon,
+                  ))
+              .toList(),
+        ),
       ),
     );
   }
