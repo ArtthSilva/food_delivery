@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:food_delivery/src/modules/home/models/item_model.dart';
 import 'package:food_delivery/src/modules/home/ui/pages/home_page.dart';
-import 'package:food_delivery/src/modules/home/ui/pages/profile_page.dart';
+import 'package:food_delivery/src/modules/profile/ui/pages/profile_page.dart';
 
 class DrawerWidget extends StatefulWidget {
   const DrawerWidget({super.key});

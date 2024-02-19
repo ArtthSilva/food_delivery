@@ -130,7 +130,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
                     children: [
                       ListView(
                         scrollDirection: Axis.horizontal,
-                        children: [
+                        children: const [
                           CardProduct(),CardProduct(),CardProduct(),]),
                           Container(color: Colors.green,),
                           Container(color: Colors.blue,),

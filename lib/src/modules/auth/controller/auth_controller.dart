@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-
-class AuthController extends ChangeNotifier {
+ 
+class AuthController {
   Future<bool> loginUser(String userEmail, String userPassword) async {
     final credential = await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: userEmail, password: userPassword);
