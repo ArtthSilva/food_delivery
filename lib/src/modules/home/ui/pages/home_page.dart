@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:food_delivery/src/modules/home/ui/widgets/card_product.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,8 +22,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(242, 242, 242, 1),
-      body: SafeArea(
+       body: SafeArea(
         child: Stack(children: [
           Align(
             alignment: const Alignment(-0.75, -0.85),
@@ -128,12 +128,25 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
                       child: TabBarView(
                     controller: tabController,
                     children: [
-                      Container(color: Colors.red,),
-                      Container(color: Colors.green,),
-                      Container(color: Colors.blue,),
-                      Container(color: Colors.orange,),
+                      ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          CardProduct(),CardProduct(),CardProduct(),]),
+                          Container(color: Colors.green,),
+                          Container(color: Colors.blue,),
+                          Container(color: Colors.orange,),
+                        
+                       
                     ],
-                  ))
+                  )),
+                  BottomNavigationBar(
+                    showSelectedLabels: false,
+                    showUnselectedLabels: false,
+                    items: const [
+                    BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: 'asda'),
+                    BottomNavigationBarItem(icon: Icon(Icons.favorite_border),label: 'asdsa'),
+                    BottomNavigationBarItem(icon: Icon(Icons.person_2_outlined),label: 'dasda'),
+                  ])
                 ],
               ),
             ),
