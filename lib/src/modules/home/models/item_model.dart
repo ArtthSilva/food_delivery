@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class ItemModel {
+ class ItemModel {
   final Icon icon;
   final Text title;
-  final Widget page;
+  final Function() onSelected;
 
-  ItemModel({required this.icon, required this.title, required this.page});
- }
+  ItemModel({required this.icon, required this.title, required this.onSelected});
+}

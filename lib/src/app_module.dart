@@ -2,6 +2,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:food_delivery/src/modules/auth/auth_module.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:food_delivery/src/modules/home/home_module.dart';
+import 'package:food_delivery/src/modules/profile/profile_module.dart';
 
 
 class AppModule extends Module {
@@ -15,5 +16,6 @@ class AppModule extends Module {
     } else {
       r.module('/', module: HomeModule());
     }
+    r.module('/profile/', module: ProfileModule());
   }
 }

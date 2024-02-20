@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:food_delivery/src/modules/home/models/item_model.dart';
 import 'package:food_delivery/src/modules/home/ui/pages/home_page.dart';
-import 'package:food_delivery/src/modules/profile/ui/pages/profile_page.dart';
-
+ 
 class DrawerWidget extends StatefulWidget {
-  const DrawerWidget({super.key});
-
+  const DrawerWidget({super.key, required this.initialPage});
+  final initialPage;
   @override
   State<DrawerWidget> createState() => _DrawerWidgetState();
 }
 
 class _DrawerWidgetState extends State<DrawerWidget> {
   Widget page = const HomePage();
+
+    @override
+  void initState() {
+    super.initState();
+    page = widget.initialPage;
+  }
   @override
   Widget build(BuildContext context) {
     return ZoomDrawer(
@@ -46,13 +52,13 @@ class MenuScreen extends StatefulWidget {
 class _MenuScreenState extends State<MenuScreen> {
   List<ItemModel> listItems = [
     ItemModel(
+        icon: const Icon(Icons.home_outlined,color: Colors.white,),
+        title: const Text('Home',style: TextStyle(color: Colors.white),),
+        onSelected: ()=> Modular.to.navigate('/')),
+    ItemModel(
         icon: const Icon(Icons.person_pin_outlined,color: Colors.white,),
         title: const Text('Profile',style: TextStyle(color: Colors.white),),
-        page: const HomePage()),
-    ItemModel(
-        icon: const Icon(Icons.add_shopping_cart_outlined,color: Colors.white,),
-        title: const Text('Orders',style: TextStyle(color: Colors.white),),
-        page: const ProfilePage())
+        onSelected:()=> Modular.to.navigate('/profile/'))
   ];
 
   @override
@@ -65,7 +71,7 @@ class _MenuScreenState extends State<MenuScreen> {
           children: listItems
               .map((e) => ListTile(
                     onTap: () {
-                      widget.onPageChange(e.page);
+                      e.onSelected();
                     },
                     title: e.title,
                     leading: e.icon,
