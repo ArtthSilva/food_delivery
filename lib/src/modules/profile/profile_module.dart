@@ -7,7 +7,7 @@ import 'package:food_delivery/src/modules/profile/ui/pages/update_profile_page.d
 class ProfileModule extends Module{ 
     @override
   void routes(r) {
-     r.child('/', child: (context) => DrawerWidget(initialPage: ProfilePage()));
+     r.child('/', child: (context) => const DrawerWidget(initialPage: ProfilePage()));
      r.child('/update/', child: (context) => const UpdateProfilePage());
   }
 }
