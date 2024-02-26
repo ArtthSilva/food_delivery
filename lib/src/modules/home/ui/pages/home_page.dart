@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:food_delivery/src/modules/home/ui/widgets/card_product.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,6 +19,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     tabController = TabController(initialIndex: 0, length: 4, vsync: this);
     super.initState();
   }
+
+  int _indiceAtual = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -150,17 +153,36 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       ),
                     ]),
                   ),
-                                     BottomNavigationBar(
-                     showSelectedLabels: false,
-                     showUnselectedLabels: false,
-                     items: const [
-                     BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: 'asda'),
-                     BottomNavigationBarItem(icon: Icon(Icons.favorite_border),label: 'asdsa'),
-                     BottomNavigationBarItem(icon: Icon(Icons.chat_outlined),label: 'dasda'),
-                   ])
+                  BottomNavigationBar(
+                      showSelectedLabels: false,
+                      showUnselectedLabels: false,
+                      currentIndex: _indiceAtual,
+                      onTap: (index) {
+                        switch (index) {
+                          case 0:
+                            Modular.to.navigate('/');
+                            break;
+                          case 1:
+                            Modular.to.pushNamed('/favorites/');
+                            break;
+                          case 2:
+                            Modular.to.pushNamed('/chat/');
+                            break;
+                        }
+                      },
+                      items: const [
+                        BottomNavigationBarItem(
+                            tooltip: 'home',
+                            activeIcon: Icon(Icons.home),
+                            icon: Icon(Icons.home_outlined),
+                            label: 'asda'),
+                        BottomNavigationBarItem(
+                            icon: Icon(Icons.favorite_border), label: 'asdsa'),
+                        BottomNavigationBarItem(
+                            icon: Icon(Icons.chat_outlined), label: 'dasda'),
+                      ])
                 ],
               ),
-
             ]),
           ],
         ),

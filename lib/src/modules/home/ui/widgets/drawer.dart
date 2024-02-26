@@ -3,7 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:food_delivery/src/modules/home/models/item_model.dart';
 import 'package:food_delivery/src/modules/home/ui/pages/home_page.dart';
- 
+
 class DrawerWidget extends StatefulWidget {
   const DrawerWidget({super.key, required this.initialPage});
   final initialPage;
@@ -14,16 +14,17 @@ class DrawerWidget extends StatefulWidget {
 class _DrawerWidgetState extends State<DrawerWidget> {
   Widget page = const HomePage();
 
-    @override
+  @override
   void initState() {
     super.initState();
     page = widget.initialPage;
   }
+
   @override
   Widget build(BuildContext context) {
     return ZoomDrawer(
-      angle: -0,
-      slideWidth: MediaQuery.of(context).size.width*.60,
+        angle: -0,
+        slideWidth: MediaQuery.of(context).size.width * .60,
         menuScreen: Builder(builder: (context) {
           return MenuScreen(
             onPageChange: (a) {
@@ -36,7 +37,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
         }),
         mainScreen: page,
         borderRadius: 24,
-         drawerShadowsBackgroundColor: Colors.deepOrange,
+        drawerShadowsBackgroundColor: Colors.deepOrange,
         menuBackgroundColor: Colors.deepOrange);
   }
 }
@@ -52,17 +53,25 @@ class MenuScreen extends StatefulWidget {
 class _MenuScreenState extends State<MenuScreen> {
   List<ItemModel> listItems = [
     ItemModel(
-        icon: const Icon(Icons.home_outlined,color: Colors.white,),
-        title: const Text('Home',style: TextStyle(color: Colors.white),),
-        onSelected: ()=> Modular.to.navigate('/')),
+        icon: const Icon(
+          Icons.home_outlined,
+          color: Colors.white,
+        ),
+        title: const Text(
+          'Home',
+          style: TextStyle(color: Colors.white),
+        ),
+        onSelected: () => Modular.to.navigate('/')),
     ItemModel(
-        icon: const Icon(Icons.person_pin_outlined,color: Colors.white,),
-        title: const Text('Profile',style: TextStyle(color: Colors.white),),
-        onSelected:()=> Modular.to.navigate('/profile/')),
-    ItemModel(
-        icon: const Icon(Icons.person_pin_outlined,color: Colors.white,),
-        title: const Text('Profile',style: TextStyle(color: Colors.white),),
-        onSelected:()=> Modular.to.navigate('/chat/'))
+        icon: const Icon(
+          Icons.person_pin_outlined,
+          color: Colors.white,
+        ),
+        title: const Text(
+          'Profile',
+          style: TextStyle(color: Colors.white),
+        ),
+        onSelected: () => Modular.to.navigate('/profile/')),
   ];
 
   @override
@@ -86,5 +95,3 @@ class _MenuScreenState extends State<MenuScreen> {
     );
   }
 }
-
- 
