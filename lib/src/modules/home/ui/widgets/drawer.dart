@@ -58,7 +58,11 @@ class _MenuScreenState extends State<MenuScreen> {
     ItemModel(
         icon: const Icon(Icons.person_pin_outlined,color: Colors.white,),
         title: const Text('Profile',style: TextStyle(color: Colors.white),),
-        onSelected:()=> Modular.to.navigate('/profile/'))
+        onSelected:()=> Modular.to.navigate('/profile/')),
+    ItemModel(
+        icon: const Icon(Icons.person_pin_outlined,color: Colors.white,),
+        title: const Text('Profile',style: TextStyle(color: Colors.white),),
+        onSelected:()=> Modular.to.navigate('/chat/'))
   ];
 
   @override

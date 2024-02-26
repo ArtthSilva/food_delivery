@@ -156,7 +156,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                      items: const [
                      BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: 'asda'),
                      BottomNavigationBarItem(icon: Icon(Icons.favorite_border),label: 'asdsa'),
-                     BottomNavigationBarItem(icon: Icon(Icons.person_2_outlined),label: 'dasda'),
+                     BottomNavigationBarItem(icon: Icon(Icons.chat_outlined),label: 'dasda'),
                    ])
                 ],
               ),
