@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/src/modules/home/models/recipe_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CardProduct extends StatelessWidget {
-  const CardProduct({super.key});
+  const CardProduct({super.key, required this.recipe, });
+  final RecipeModel recipe;
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +21,15 @@ class CardProduct extends StatelessWidget {
                   color: Colors.white, borderRadius: BorderRadius.circular(30)),
               child: Column(
                 children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(5),
+                    child: Image.network(recipe.linkImage)),
                   const SizedBox(
-                    height: 120,
+                    height: 20,
                   ),
                   Center(
                       child: Text(
-                    'Veggie tomato mix',
+                    recipe.name ,
                     style: GoogleFonts.balooTamma2(
                       fontWeight: FontWeight.w600,
                        fontSize: 16,
@@ -32,21 +37,14 @@ class CardProduct extends StatelessWidget {
                   )),
                   Center(
                       child: Text(
-                    'Fácil',
-                    style: GoogleFonts.balooTamma2(
-                      fontWeight: FontWeight.w600,
-                       fontSize: 16,
-                       color: Colors.green
-                    ),
+                    recipe.level  ,
+                     
                   )),
                 ],
               ),
             ),
           ),
-          Align(
-            alignment: const Alignment(-1, -0.8),
-            child: Image.asset('assets/images/food-img1.png', height: 180,),
-          )
+          
         ],
       ),
     );

@@ -72,6 +72,16 @@ class _MenuScreenState extends State<MenuScreen> {
           style: TextStyle(color: Colors.white),
         ),
         onSelected: () => Modular.to.navigate('/profile/')),
+    ItemModel(
+        icon: const Icon(
+          Icons.chat,
+          color: Colors.white,
+        ),
+        title: const Text(
+          'Chat',
+          style: TextStyle(color: Colors.white),
+        ),
+        onSelected: () => Modular.to.navigate('/chat/')),
   ];
 
   @override

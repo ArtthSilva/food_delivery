@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:food_delivery/src/modules/home/controllers/recipe_controller.dart';
+import 'package:food_delivery/src/modules/home/models/recipe_model.dart';
+import 'package:food_delivery/src/modules/home/repositories/recipe_repository_imp.dart';
 import 'package:food_delivery/src/modules/home/ui/widgets/card_product.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,13 +17,20 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late TabController tabController;
 
+  RecipeController controller = RecipeController(
+    repository: RecipeRepositoryImp(
+      client: HttpClient(),
+    ),
+  );
+
   @override
   void initState() {
     tabController = TabController(initialIndex: 0, length: 4, vsync: this);
+     controller.loadRecipes();
     super.initState();
   }
 
-  int _indiceAtual = 0;
+  final _indiceAtual = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -118,37 +128,54 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   SizedBox(
                     width: MediaQuery.sizeOf(context).width,
                     height: MediaQuery.sizeOf(context).height * 0.43,
-                    child: TabBarView(controller: tabController, children: [
+                    child: TabBarView(controller: tabController, 
+                    children: [
+                      AnimatedBuilder(
+                        animation:
+                        Listenable.merge([controller.isLoading, controller.state]),
+                      builder: (context,child){
+                        if (controller.isLoading == true) {
+                          return const CircularProgressIndicator();
+                        } else {
+                          return                       ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: controller.state.value.length,
+                        itemBuilder: (_, index){
+                          final recipe = controller.state.value[index];
+ 
+                          return ValueListenableBuilder<List<RecipeModel>>(
+                          valueListenable: controller.state,
+                          builder: (context, value, child){
+ 
+                            return CardProduct(recipe: recipe);                              
+ 
+                          });
+                        }
+                          
+                      );
+                        }
+                      }),
+ 
+
                       ListView(
                         scrollDirection: Axis.horizontal,
-                        children: const [
-                          CardProduct(),
-                          CardProduct(),
-                          CardProduct(),
+                        children:   [
+                          Container(),
+                          Container(),
                         ],
                       ),
                       ListView(
                         scrollDirection: Axis.horizontal,
-                        children: const [
-                          CardProduct(),
-                          CardProduct(),
-                          CardProduct(),
+                        children:   [
+                          Container(),
+                          Container(),
                         ],
                       ),
                       ListView(
                         scrollDirection: Axis.horizontal,
-                        children: const [
-                          CardProduct(),
-                          CardProduct(),
-                          CardProduct(),
-                        ],
-                      ),
-                      ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: const [
-                          CardProduct(),
-                          CardProduct(),
-                          CardProduct(),
+                        children:   [
+                          Container(),
+                          Container(),
                         ],
                       ),
                     ]),
@@ -165,9 +192,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           case 1:
                             Modular.to.pushNamed('/favorites/');
                             break;
-                          case 2:
-                            Modular.to.pushNamed('/chat/');
-                            break;
                         }
                       },
                       items: const [
@@ -178,8 +202,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             label: 'asda'),
                         BottomNavigationBarItem(
                             icon: Icon(Icons.favorite_border), label: 'asdsa'),
-                        BottomNavigationBarItem(
-                            icon: Icon(Icons.chat_outlined), label: 'dasda'),
                       ])
                 ],
               ),
