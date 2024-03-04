@@ -27,23 +27,23 @@ class RecipeRepositoryImp implements RecipeRepository{
   @override
   Future<List<RecipeModel>> getRecipes() async {
     final response = await client.get(url: 'http://192.168.2.17:8080/recipes');
+ if (response.statusCode == 200) {
+    final List<RecipeModel> recipes = [];
 
-    if (response.statusCode == 200) {
-      final List<RecipeModel> books = [];
+    // Decodifica o corpo da resposta como UTF-8
+    final body = jsonDecode(utf8.decode(response.bodyBytes));
 
-      final body = jsonDecode(response.body);
+    body.map((item) {
+      final RecipeModel recipe = RecipeModel.fromMap(item);
+      recipes.add(recipe);
+    }).toList();
 
-      body.map((item){
-        final RecipeModel book = RecipeModel.fromMap(item);
-        books.add(book);
-      }).toList();
-
-      return books;
-    }else if(response.statusCode == 404){
-      throw ('url não valida');
-    }else{
-      throw Exception('não deu p carregar');
-    }
+    return recipes;
+ } else if (response.statusCode == 404) {
+    throw Exception('URL não válida');
+ } else {
+    throw Exception('Não deu pra carregar');
+ }
   }
 
  

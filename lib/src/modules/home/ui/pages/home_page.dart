@@ -4,6 +4,7 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:food_delivery/src/modules/home/controllers/recipe_controller.dart';
 import 'package:food_delivery/src/modules/home/models/recipe_model.dart';
 import 'package:food_delivery/src/modules/home/repositories/recipe_repository_imp.dart';
+import 'package:food_delivery/src/modules/home/ui/pages/selected_recipe.dart';
 import 'package:food_delivery/src/modules/home/ui/widgets/card_product.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -25,9 +26,18 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    tabController = TabController(initialIndex: 0, length: 4, vsync: this);
-     controller.loadRecipes();
+    tabController = TabController(initialIndex: 0, length: 3, vsync: this);
+    controller.loadRecipes();
     super.initState();
+  }
+
+  favRecipePage(RecipeModel recipe){
+    Navigator.push(
+    context,
+    MaterialPageRoute(
+    builder: (_) =>
+    SelectedRecipe(
+    recipe: recipe),),);
   }
 
   final _indiceAtual = 0;
@@ -89,7 +99,16 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         Padding(
                           padding: EdgeInsets.only(bottom: 5),
                           child: Text(
-                            'Foods',
+                            'Salgadas',
+                            style: TextStyle(
+                              fontSize: 17,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(right: 12.0, bottom: 5),
+                          child: Text(
+                            'Doces',
                             style: TextStyle(
                               fontSize: 17,
                             ),
@@ -104,80 +123,94 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(right: 12.0, bottom: 5),
-                          child: Text(
-                            'Snacks',
-                            style: TextStyle(
-                              fontSize: 17,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(right: 12.0, bottom: 5),
-                          child: Text(
-                            'Frutas',
-                            style: TextStyle(
-                              fontSize: 17,
-                            ),
-                          ),
-                        ),
                       ],
                     ),
                   ),
                   SizedBox(
                     width: MediaQuery.sizeOf(context).width,
                     height: MediaQuery.sizeOf(context).height * 0.43,
-                    child: TabBarView(controller: tabController, 
-                    children: [
+                    child: TabBarView(controller: tabController, children: [
                       AnimatedBuilder(
-                        animation:
-                        Listenable.merge([controller.isLoading, controller.state]),
-                      builder: (context,child){
-                        if (controller.isLoading == true) {
-                          return const CircularProgressIndicator();
-                        } else {
-                          return                       ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: controller.state.value.length,
-                        itemBuilder: (_, index){
-                          final recipe = controller.state.value[index];
- 
-                          return ValueListenableBuilder<List<RecipeModel>>(
-                          valueListenable: controller.state,
-                          builder: (context, value, child){
- 
-                            return CardProduct(recipe: recipe);                              
- 
-                          });
-                        }
-                          
-                      );
-                        }
-                      }),
- 
+                          animation: Listenable.merge(
+                              [controller.isLoading, controller.state]),
+                          builder: (context, child) {
+                            if (controller.isLoading == true) {
+                              return const CircularProgressIndicator();
+                            } else {
+                              return ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: controller.state.value.length,
+                                  itemBuilder: (_, index) {
+                                    final recipe =
+                                        controller.state.value[index];
 
-                      ListView(
-                        scrollDirection: Axis.horizontal,
-                        children:   [
-                          Container(),
-                          Container(),
-                        ],
-                      ),
-                      ListView(
-                        scrollDirection: Axis.horizontal,
-                        children:   [
-                          Container(),
-                          Container(),
-                        ],
-                      ),
-                      ListView(
-                        scrollDirection: Axis.horizontal,
-                        children:   [
-                          Container(),
-                          Container(),
-                        ],
-                      ),
+                                    return ValueListenableBuilder<
+                                            List<RecipeModel>>(
+                                        valueListenable: controller.state,
+                                        builder: (context, value, child) {
+                                          return InkWell(
+                                            onTap: () => favRecipePage(recipe),
+                                            child: CardProduct(
+                                              recipe: recipe,
+                                              typeRecipe: 'Salgada',
+                                            ),
+                                          );
+                                        });
+                                  });
+                            }
+                          }),
+                      AnimatedBuilder(
+                          animation: Listenable.merge(
+                              [controller.isLoading, controller.state]),
+                          builder: (context, child) {
+                            if (controller.isLoading == true) {
+                              return const CircularProgressIndicator();
+                            } else {
+                              return ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: controller.state.value.length,
+                                  itemBuilder: (_, index) {
+                                    final recipe =
+                                        controller.state.value[index];
+
+                                    return ValueListenableBuilder<
+                                            List<RecipeModel>>(
+                                        valueListenable: controller.state,
+                                        builder: (context, value, child) {
+                                          return CardProduct(
+                                            recipe: recipe,
+                                            typeRecipe: 'Doce',
+                                          );
+                                        });
+                                  });
+                            }
+                          }),
+                      AnimatedBuilder(
+                          animation: Listenable.merge(
+                              [controller.isLoading, controller.state]),
+                          builder: (context, child) {
+                            if (controller.isLoading == true) {
+                              return const CircularProgressIndicator();
+                            } else {
+                              return ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: controller.state.value.length,
+                                  itemBuilder: (_, index) {
+                                    final recipe =
+                                        controller.state.value[index];
+
+                                    return ValueListenableBuilder<
+                                            List<RecipeModel>>(
+                                        valueListenable: controller.state,
+                                        builder: (context, value, child) {
+                                          return CardProduct(
+                                            recipe: recipe,
+                                            typeRecipe: 'Drink',
+                                          );
+                                        });
+                                  });
+                            }
+                          }),
                     ]),
                   ),
                   BottomNavigationBar(
