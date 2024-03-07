@@ -9,7 +9,7 @@ class RecipeController{
   final  RecipeRepository repository;
 
   RecipeController({required this.repository});
-  
+   
 
   Future loadRecipes() async{
     isLoading.value = true;

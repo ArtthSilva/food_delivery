@@ -30,7 +30,6 @@ class RecipeRepositoryImp implements RecipeRepository{
  if (response.statusCode == 200) {
     final List<RecipeModel> recipes = [];
 
-    // Decodifica o corpo da resposta como UTF-8
     final body = jsonDecode(utf8.decode(response.bodyBytes));
 
     body.map((item) {

@@ -18,7 +18,7 @@ class _ChatScreenState extends State<ChatScreen> {
   List<ChatMessage> allMassages = [];
   List<ChatUser> typing=[];
 
-  final ourUrl="https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=API_KEY";
+  final ourUrl="https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyCYos5_feiDqZX4vibEzFWdOzKFfC0denM";
   final header={
     'Content-Type': 'application/json'
   };

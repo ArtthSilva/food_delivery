@@ -9,8 +9,8 @@ class RecipeModel {
   final String ingredients;
   final String level;
   final String linkImage;
- 
-  RecipeModel( {
+
+  RecipeModel({
     required this.id,
     required this.name,
     required this.type,
@@ -18,7 +18,7 @@ class RecipeModel {
     required this.ingredients,
     required this.level,
     required this.linkImage,
-   });
+  });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -34,16 +34,18 @@ class RecipeModel {
 
   factory RecipeModel.fromMap(Map<String, dynamic> map) {
     return RecipeModel(
-     id: map['id'] ,
-     name:  map['name'],
-      type: map['type'] ,
-      description: map['description'] ,
-      ingredients: map['ingredients'] ,
-     level:  map['level'],
-      linkImage: map['link_image'] ,
+      id: map['id'],
+      name: map['name'],
+      type: map['type'],
+      description: map['description'],
+      ingredients: map['ingredients'],
+      level: map['level'],
+      linkImage: map['link_image'],
     );
   }
 
-  String toJson() => json.encode(toMap());
+  factory RecipeModel.fromJson(String str) =>
+      RecipeModel.fromMap(json.decode(str));
 
+  String toJson() => json.encode(toMap());
 }

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:food_delivery/src/modules/home/controllers/favorite_recipe_controller.dart';
 import 'package:food_delivery/src/modules/home/controllers/recipe_controller.dart';
 import 'package:food_delivery/src/modules/home/models/recipe_model.dart';
 import 'package:food_delivery/src/modules/home/repositories/recipe_repository_imp.dart';
 import 'package:food_delivery/src/modules/home/ui/pages/selected_recipe.dart';
+import 'package:food_delivery/src/modules/home/ui/pages/teste.dart';
 import 'package:food_delivery/src/modules/home/ui/widgets/card_product.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -28,6 +30,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void initState() {
     tabController = TabController(initialIndex: 0, length: 3, vsync: this);
     controller.loadRecipes();
+                          print(controllers.favorites.length);
+
     super.initState();
   }
 
@@ -40,15 +44,24 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     recipe: recipe),),);
   }
 
+  FavoriteRecipeController controllers = FavoriteRecipeController();
   final _indiceAtual = 0;
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+     return SafeArea(
         child: Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
+
+            IconButton(onPressed: () => Navigator.push(
+    context,
+    MaterialPageRoute(
+
+    builder: (_) =>
+     FavoritesScreen()
+     ),), icon: Icon(Icons.abc)),
             Column(children: [
               const SizedBox(
                 height: 55,
@@ -177,9 +190,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             List<RecipeModel>>(
                                         valueListenable: controller.state,
                                         builder: (context, value, child) {
-                                          return CardProduct(
-                                            recipe: recipe,
-                                            typeRecipe: 'Doce',
+                                          return InkWell(
+                                            onTap: () => favRecipePage(recipe),
+                                            child: CardProduct(
+                                              recipe: recipe,
+                                              typeRecipe: 'Doce',
+                                            ),
                                           );
                                         });
                                   });
@@ -203,9 +219,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             List<RecipeModel>>(
                                         valueListenable: controller.state,
                                         builder: (context, value, child) {
-                                          return CardProduct(
-                                            recipe: recipe,
-                                            typeRecipe: 'Drink',
+                                          return InkWell(
+                                            onTap: () => favRecipePage(recipe),
+                                            child: CardProduct(
+                                              recipe: recipe,
+                                              typeRecipe: 'Drink',
+                                            ),
                                           );
                                         });
                                   });
