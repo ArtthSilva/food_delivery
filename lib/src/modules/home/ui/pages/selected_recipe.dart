@@ -22,7 +22,8 @@ class _SelectedRecipeState extends State<SelectedRecipe> {
 
   @override
   Widget build(BuildContext context) {
-    bool isFavorite = controller.favorites.any((favoriteBook) => favoriteBook.id == widget.recipe.id);
+    bool isFavorite = controller.favorites
+        .any((favoriteBook) => favoriteBook.id == widget.recipe.id);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -34,15 +35,11 @@ class _SelectedRecipeState extends State<SelectedRecipe> {
             IconButton(
               onPressed: () async {
                 await controller.addFavoriteRecipe(widget.recipe);
-                print(controller.favorites.length);
-
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Receita adicionada aos favoritos')),
-                );
+                setState(() {});
               },
               icon: isFavorite
-                  ? Icon(Icons.favorite_outlined)
-                  : Icon(Icons.favorite_border),
+                  ? const Icon(Icons.favorite_outlined)
+                  : const Icon(Icons.favorite_border),
             )
           ],
         ),
