@@ -6,7 +6,7 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: 'Food Delivery',
+      title: 'Receitinhas',
       theme: ThemeData(
         scaffoldBackgroundColor: const Color.fromARGB(255,  242,  242,  242),
       ),

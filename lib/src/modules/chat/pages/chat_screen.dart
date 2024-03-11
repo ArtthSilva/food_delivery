@@ -18,7 +18,7 @@ class _ChatScreenState extends State<ChatScreen> {
   List<ChatMessage> allMassages = [];
   List<ChatUser> typing=[];
 
-  final ourUrl="https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyCYos5_feiDqZX4vibEzFWdOzKFfC0denM";
+  final ourUrl="https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=API_KEY";
   final header={
     'Content-Type': 'application/json'
   };
@@ -29,12 +29,15 @@ class _ChatScreenState extends State<ChatScreen> {
     setState(() {
 
     });
-    var data={"contents":[{"parts":[{"text":m.text}]}]};
+    var data={"contents":[{"parts":[{"text":m.text}]}],
+    
+     };
 
     await http.post(Uri.parse(ourUrl),headers: header,body: jsonEncode(data)).
     then((value){
       if(value.statusCode==200){
         var result=jsonDecode(value.body);
+        print(data);
         print(result["candidates"][0]["content"]["parts"][0]["text"]);
         ChatMessage m1=ChatMessage(
             user: bot,
@@ -77,10 +80,10 @@ class _ChatScreenState extends State<ChatScreen> {
           messageOptions:const MessageOptions(
             currentUserTextColor: Colors.white,
             currentUserTimeTextColor: Colors.white,
-            currentUserContainerColor: Colors.red,
+            currentUserContainerColor: Colors.green,
             showTime: true,
             textColor: Colors.white,
-            containerColor: Colors.green
+            containerColor: Colors.red
           ),
           typingUsers: typing,
           currentUser: user,
