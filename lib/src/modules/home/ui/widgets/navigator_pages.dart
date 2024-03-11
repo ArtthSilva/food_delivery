@@ -1,6 +1,6 @@
  import 'package:flutter/material.dart';
 import 'package:food_delivery/src/modules/home/ui/pages/home_page.dart';
-import 'package:food_delivery/src/modules/home/ui/pages/teste.dart';
+import 'package:food_delivery/src/modules/home/ui/pages/favorites_recipes_page.dart';
 import 'package:food_delivery/src/modules/home/ui/widgets/drawer.dart';
  
  class NavigatorPages extends StatefulWidget {
@@ -24,7 +24,7 @@ import 'package:food_delivery/src/modules/home/ui/widgets/drawer.dart';
                 index: _indiceAtual,
                 children: const [
                   DrawerWidget(initialPage: HomePage()),
-                  DrawerWidget(initialPage:  Teste()),
+                  DrawerWidget(initialPage:  FavoriteRecipesPage()),
                  
                 ],
               ),
