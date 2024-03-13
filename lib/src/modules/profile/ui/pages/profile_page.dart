@@ -27,7 +27,7 @@ class _ProfilePageState extends State<ProfilePage> {
           Align(
             alignment: const Alignment(-0.65, -0.65),
             child: Text(
-              'My profile',
+              'Meu perfil',
               style: GoogleFonts.balooTamma2(
                 fontWeight: FontWeight.w700,
                 fontSize: 34,
@@ -37,7 +37,7 @@ class _ProfilePageState extends State<ProfilePage> {
           Align(
             alignment: const Alignment(-0.65, -0.45),
             child: Text(
-              'Personal details',
+              'Detalhes pessoais',
               style: GoogleFonts.balooTamma2(
                 fontWeight: FontWeight.w700,
                 fontSize: 18,
@@ -56,7 +56,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         backgroundColor: const Color.fromRGBO(250, 74, 12, 1)),
                     onPressed:()=> Modular.to.navigate('/profile/update/'),
                     child: const Text(
-                      'Update',
+                      'Atualizar',
                       style: TextStyle(color: Colors.white),
                     ))),
           )

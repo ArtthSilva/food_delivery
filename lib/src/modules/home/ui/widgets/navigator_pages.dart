@@ -17,17 +17,13 @@ import 'package:food_delivery/src/modules/home/ui/widgets/drawer.dart';
  
     @override
     Widget build(BuildContext context) {
-        return Scaffold(
-             
-            body: SafeArea(
-              child: IndexedStack(
-                index: _indiceAtual,
-                children: const [
-                  DrawerWidget(initialPage: HomePage()),
-                  DrawerWidget(initialPage:  FavoriteRecipesPage()),
-                 
-                ],
-              ),
+        return Scaffold(              
+            body: IndexedStack(
+              index: _indiceAtual,
+              children: const [
+                DrawerWidget(initialPage: HomePage()),
+                DrawerWidget(initialPage: FavoriteRecipesPage()),                 
+              ],
             ),
             bottomNavigationBar:  BottomNavigationBar(
                       showSelectedLabels: false,

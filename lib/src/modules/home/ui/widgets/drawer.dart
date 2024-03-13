@@ -68,7 +68,7 @@ class _MenuScreenState extends State<MenuScreen> {
           color: Colors.white,
         ),
         title: const Text(
-          'Profile',
+          'Perfil',
           style: TextStyle(color: Colors.white),
         ),
         onSelected: () => Modular.to.navigate('/profile/')),
