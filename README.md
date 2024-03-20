@@ -18,6 +18,7 @@
 
 
 <h2>📱 Preview</h2>
+<img src="https://github.com/ArtthSilva/receitinhas/assets/113397588/6f021fe8-719a-489e-84bf-806443d5c8fa" width="170px" />
 <img src="https://github.com/ArtthSilva/leitor-de-ebooks/assets/113397588/7ecff18b-6f76-4c95-be12-e9c2575229c9" width="170px" />
 <img src="https://github.com/ArtthSilva/receitinhas/assets/113397588/ef8f5466-f5a5-4522-af42-dc097099e02d" width="170px" />
 <img src="https://github.com/ArtthSilva/leitor-de-ebooks/assets/113397588/6fddab35-4894-4715-bca9-22a5be3d3329" width="170px" />
