@@ -40,7 +40,7 @@ class RecipeModel {
       description: map['description'],
       ingredients: map['ingredients'],
       level: map['level'],
-      linkImage: map['link_image'],
+      linkImage: map['link_image'] ,
     );
   }
 

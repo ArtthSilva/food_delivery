@@ -1,15 +1,21 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:food_delivery/src/modules/auth/ui/pages/initial_page.dart';
 import 'package:food_delivery/src/modules/home/models/item_model.dart';
 import 'package:food_delivery/src/modules/home/ui/pages/home_page.dart';
+import 'package:food_delivery/src/modules/home/ui/widgets/navigator_pages.dart';
 
 class DrawerWidget extends StatefulWidget {
   const DrawerWidget({super.key, required this.initialPage});
   final initialPage;
+
   @override
   State<DrawerWidget> createState() => _DrawerWidgetState();
 }
+
+final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
 class _DrawerWidgetState extends State<DrawerWidget> {
   Widget page = const HomePage();
@@ -51,7 +57,21 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
-  List<ItemModel> listItems = [
+  void _navigateToHome() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => const NavigatorPages()),
+    );
+  }
+
+  void _navigateToLogin() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => const InitialPage()),
+    );
+  }
+
+  late List<ItemModel> listItems = [
     ItemModel(
         icon: const Icon(
           Icons.home_outlined,
@@ -61,7 +81,9 @@ class _MenuScreenState extends State<MenuScreen> {
           'Home',
           style: TextStyle(color: Colors.white),
         ),
-        onSelected: () => Modular.to.navigate('/')),
+        onSelected: () {
+          _navigateToHome();
+        }),
     ItemModel(
         icon: const Icon(
           Icons.person_pin_outlined,
@@ -82,6 +104,19 @@ class _MenuScreenState extends State<MenuScreen> {
           style: TextStyle(color: Colors.white),
         ),
         onSelected: () => Modular.to.navigate('/chat/')),
+    ItemModel(
+        icon: const Icon(
+          Icons.logout_outlined,
+          color: Colors.white,
+        ),
+        title: const Text(
+          'Sair',
+          style: TextStyle(color: Colors.white),
+        ),
+        onSelected: () async {
+          await FirebaseAuth.instance.signOut();
+          _navigateToLogin();
+        }),
   ];
 
   @override

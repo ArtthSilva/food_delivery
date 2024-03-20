@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/src/modules/auth/ui/pages/welcome_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class InitialPage extends StatelessWidget {
@@ -26,7 +27,7 @@ class InitialPage extends StatelessWidget {
             Align(
               alignment:const Alignment(-0.3, -0.51),
               child: Text(
-                'Everyone ',
+                'Para todos ',
                 style: GoogleFonts.balooTamma2(
                   fontWeight: FontWeight.w800,
                   color: Colors.white,
@@ -61,15 +62,15 @@ class InitialPage extends StatelessWidget {
                 width: MediaQuery.sizeOf(context).width,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('Get started', style: TextStyle(color: Color.fromRGBO(201, 58, 10, 0.795)),),
+                  onPressed: () => Navigator.push(context,  MaterialPageRoute(builder: (_) => const WelcomePage())),
+                  child: const Text('Começar', style: TextStyle(color: Color.fromRGBO(201, 58, 10, 0.795)),),
                 ),
               ),
             ),
                         Align(
-             alignment: const Alignment(-0.35, -0.63),
+             alignment: const Alignment(-0.35, -0.65),
               child: Text(
-                'Food for ',
+                'Receitinhas',
                 style: GoogleFonts.balooTamma2(
                   fontWeight: FontWeight.w800,
                   color: Colors.white,

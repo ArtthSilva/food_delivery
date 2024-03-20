@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/src/modules/auth/controller/auth_controller.dart';
+import 'package:food_delivery/src/modules/home/ui/widgets/navigator_pages.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -25,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
           Row(
             children: [
               Text(
-                'Email address',
+                'Email',
                 style: TextStyle(color: Colors.grey[600]),
               )
             ],
@@ -39,13 +40,14 @@ class _LoginPageState extends State<LoginPage> {
           Row(
             children: [
               Text(
-                'Password',
+                'Senha',
                 style: TextStyle(color: Colors.grey[600]),
               )
             ],
           ),
           TextField(
-            controller: emailController,
+            obscureText: true,
+            controller: passwordController,
           ),
           const SizedBox(
             height: 20,
@@ -53,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
           const Row(
             children: [
               Text(
-                'Forgot Passcode?',
+                'Esqueceu a senha?',
                 style: TextStyle(color: Color.fromRGBO(250, 74, 12, 100)),
               ),
             ],
@@ -67,7 +69,13 @@ class _LoginPageState extends State<LoginPage> {
               style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromRGBO(250, 74, 12, 100)),
               onPressed: () {
-                controller.loginUser(emailController.text, passwordController.text);
+                controller.loginUser(
+                    emailController.text, passwordController.text);
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const NavigatorPages()),
+                );
               },
               child: const Text(
                 'Login',

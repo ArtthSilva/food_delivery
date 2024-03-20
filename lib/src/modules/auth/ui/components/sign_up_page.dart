@@ -33,12 +33,12 @@ class _SignUpComponentState extends State<SignUpComponent> {
           const SizedBox(height: 10),
             TextField(
             controller: emailController,
-            decoration: const InputDecoration(labelText: 'Email adress'),
+            decoration: const InputDecoration(labelText: 'Email'),
           ),
           const SizedBox(height: 5),
           TextField(
             controller: passwordController,
-            decoration: const InputDecoration(labelText: 'Password'),
+            decoration: const InputDecoration(labelText: 'Senha'),
             obscureText: true,
           ),
           const SizedBox(
@@ -46,7 +46,7 @@ class _SignUpComponentState extends State<SignUpComponent> {
           ),
           TextField(
             controller: confirmPasswordController,
-            decoration: const InputDecoration(labelText: 'Confirm Password'),
+            decoration: const InputDecoration(labelText: 'Confirmar senha'),
             obscureText: true,
           ),
           Container(

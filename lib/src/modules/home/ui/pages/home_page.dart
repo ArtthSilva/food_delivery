@@ -1,3 +1,4 @@
+ 
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:food_delivery/src/modules/home/controllers/favorite_recipe_controller.dart';
@@ -24,11 +25,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       client: HttpClient(),
     ),
   );
-
-  @override
+   @override
   void initState() {
     tabController = TabController(initialIndex: 0, length: 3, vsync: this);
     controller.loadRecipes();
+         
 
     super.initState();
   }
@@ -41,11 +42,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
          duration: const Duration(milliseconds: 350))
       );
   }
-
   FavoriteRecipeController controllers = FavoriteRecipeController();
-
   @override
   Widget build(BuildContext context) {
+    
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(

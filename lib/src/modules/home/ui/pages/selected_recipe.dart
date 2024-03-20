@@ -23,7 +23,7 @@ class _SelectedRecipeState extends State<SelectedRecipe> {
   @override
   Widget build(BuildContext context) {
     bool isFavorite = controller.favorites
-        .any((favoriteBook) => favoriteBook.id == widget.recipe.id);
+        .any((favoriteRecipe) => favoriteRecipe.id == widget.recipe.id);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -38,7 +38,7 @@ class _SelectedRecipeState extends State<SelectedRecipe> {
                 setState(() {});
               },
               icon: isFavorite
-                  ? const Icon(Icons.favorite_outlined)
+                  ? const Icon(Icons.favorite_outlined, color: Colors.red,)
                   : const Icon(Icons.favorite_border),
             )
           ],
